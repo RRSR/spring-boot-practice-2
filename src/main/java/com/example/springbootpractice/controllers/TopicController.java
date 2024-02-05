@@ -1,7 +1,6 @@
 package com.example.springbootpractice.controllers;
 
 
-import javax.inject.Inject;
 import java.util.List;
 import com.example.springbootpractice.model.Topic;
 import com.example.springbootpractice.service.TopicService;
@@ -13,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/topics")
 public class TopicController {
 
-  @Inject
-  private TopicService topicService;
+  private final TopicService topicService;
+
+  public TopicController(TopicService topicService) {
+    this.topicService = topicService;
+  }
 
   @GetMapping(value = "/list")
   public List<Topic> getAllTopics() {
